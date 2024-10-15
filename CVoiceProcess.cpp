@@ -82,7 +82,9 @@ CVoiceCommand CVoiceProcess::ProcessMessage(std::string message) {
             // see whether the voice keyword is *anywhere* in the message
             string v = voice[i].substr(1, string::npos);
             loc = sTmp.find(v);
-            //printf("v: %s\tloc: %d\tsTmp: %s\n",v.c_str(),loc,sTmp.c_str());
+
+            printf("Sikender looking for ~ string\n");
+            printf("v: %s\tloc: %d\tsTmp: %s\n",v.c_str(),loc,sTmp.c_str());
             if (loc != string::npos && loc != -1) 
             {
                 // if it does, return
@@ -90,12 +92,15 @@ CVoiceCommand CVoiceProcess::ProcessMessage(std::string message) {
                 printf("command3: %s\n", commands[i].c_str());
 
                 break;
+            } else {
+                printf("String not found :(");
             }
         }
         else  
         {
             boost::regex expr{ voice[i] };
             bool b = boost::regex_match(sTmp, expr);
+            printf(" is this true %d", b);
             //std::cout << std::boolalpha << b << '\n';
 
             if (b)
