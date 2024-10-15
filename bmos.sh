@@ -7,7 +7,7 @@ touch /home/pi/bmos/parade/parade.txt
 
 /home/pi/bmos/scripts/armsinit.sh
 /home/pi/bmos/scripts/armsupslow.sh &
-vlc /home/pi/bmos/videos/intro.mp4 vlc://quit > /dev/null &
+cvlc --custom-aspect-ratio 16:9 /home/pi/bmos/videos/intro.mp4 vlc://quit > /dev/null &
 
 cd /home/pi/bmos/
 /home/pi/bmos/bmos

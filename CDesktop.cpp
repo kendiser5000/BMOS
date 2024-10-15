@@ -2681,7 +2681,7 @@ void CDesktop::PlayVideoSync(char* filename)
 	//printf("PlayVideo(%s)\n", filename);
 #else
 	// sprintf(s, "omxplayer --aspect-mode fill --fps 25 --layer 10010 -o alsa --no-keys --no-osd /home/pi/bmos/videos/%s > /dev/null &", filename);
-	sprintf(s, "vlc /home/pi/bmos/videos/%s vlc://quit > /dev/null &", filename);
+	sprintf(s, "cvlc --custom-aspect-ratio 16:9 /home/pi/bmos/videos/%s vlc://quit > /dev/null &", filename);
 
 	system(s);
 #endif
@@ -2740,7 +2740,8 @@ void CDesktop::PlayVideo(char* filename, int face)
 	// 	vide, NULL };
 
 	char* argv[] = { 
-		(char*)"vlc",
+		(char*)"cvlc",
+		(char*)"--custom-aspect-ratio 16:9",
 		(char*) vide, 
 		(char*) "vlc://quit",
 		NULL };
@@ -2757,7 +2758,7 @@ void CDesktop::PlayVideo(char* filename, int face)
 #else
 	char cmd[1024];
 	
-	sprintf(cmd, "vlc /home/pi/bmos/videos/%s vlc://quit", filename);
+	sprintf(cmd, "cvlc --custom-aspect-ratio 16:9 /home/pi/bmos/videos/%s vlc://quit", filename);
 	printf("Sikender the cmd is: %s\n", cmd);
 	printf("%s\n", vide);
 
@@ -2775,7 +2776,7 @@ void CDesktop::PlayVideo(char* filename, int face)
 		dup2(fd, 1);   // make stdout go to file
 		// execvp("omxplayer", argv);
 		printf("Playing video now");
-		execvp("vlc", argv);
+		execvp("cvlc", argv);
 		close(fd);
 	}
 	else {
@@ -2824,7 +2825,8 @@ void CDesktop::PlayVideoUSB(char* filename, int face)
 	// 	vide, NULL };
 
 	char* argv[] = { 
-		(char*)"vlc",
+		(char*)"cvlc",
+		(char*)"--custom-aspect-ratio 16:9",
 		(char*) vide, 
 		(char*) "vlc://quit",
 		NULL };
