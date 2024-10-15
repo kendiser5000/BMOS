@@ -2730,7 +2730,8 @@ void CDesktop::PlayVideo(char* filename, int face)
 	}
 
 	char* argv[] = { (char*)"omxplayer",
-		(char*)"--fps 25",
+		(char*)"--fps",
+		(char*)"25",
 		(char*)"--aspect-mode",
 		(char*)"fill",
 		(char*)"--layer",
@@ -2760,7 +2761,7 @@ void CDesktop::PlayVideo(char* filename, int face)
 	char cmd[1024];
 	
 	// sprintf(cmd, "cvlc --custom-aspect-ratio 16:9 /home/pi/bmos/videos/%s vlc://quit", filename);
-	sprintf(cmd, "omxplayer --aspect-mode fill --fps 25 --layer 10010 --no-keys --no-osd /home/pi/bmos/videos/%s\n", vide);
+	sprintf(cmd, "omxplayer --aspect-mode fill --fps 25 --layer 10010 --no-keys --no-osd %s\n", vide);
 	printf("Sikender the cmd is: %s\n", cmd);
 	printf("%s\n", vide);
 
