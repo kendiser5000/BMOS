@@ -101,6 +101,7 @@ CVoiceCommand CVoiceProcess::ProcessMessage(std::string message) {
             if (b)
             {
                 rawCommand = commands[i].c_str();
+                printf("command4: %s\n", commands[i].c_str());
             }
 
             //std::string s = "a what's this ddds";
