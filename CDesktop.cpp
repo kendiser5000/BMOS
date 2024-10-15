@@ -2755,28 +2755,31 @@ void CDesktop::PlayVideo(char* filename, int face)
 	printf("%s\n", cmd);
 	BmoProcess((char*)cmd);
 #else
-
-
-
-	//printf("%s\n", vide);
+	char cmd[1024];
+	
+	sprintf(cmd, "vlc /home/pi/bmos/videos/%s vlc://quit", filename);
+	printf("Sikender the cmd is: %s\n", cmd);
+	printf("%s\n", vide);
 
 	pid_t pid = fork();
 
 	if (pid == -1) {
 		// When fork() returns -1, an error happened.
 		perror("fork failed");
+		printf("fork failed");
 		//exit(EXIT_FAILURE);
 		return;
 	}
 	else if (pid == 0) {
 		int fd = open("/dev/null", O_RDWR, S_IRUSR | S_IWUSR);
-
 		dup2(fd, 1);   // make stdout go to file
 		// execvp("omxplayer", argv);
+		printf("Playing video now");
 		execvp("vlc", argv);
 		close(fd);
 	}
 	else {
+		printf("Sleeping");
 		// When fork() returns a positive number, we are in the parent process
 		// and the return value is the PID of the newly created child process.
 		wpid = pid;
@@ -3156,6 +3159,7 @@ void CDesktop::ProcessGoogleVoice()
 	}
 	else if (vc.mCommand == "mp4")
 	{
+		printf("Playing video");
 		PlayVideo((char*)vc.mArgument.c_str(), 0);
 	}
 	else if (vc.mCommand == "launch")
