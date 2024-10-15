@@ -2680,8 +2680,8 @@ void CDesktop::PlayVideoSync(char* filename)
 #ifdef WINDOWS
 	//printf("PlayVideo(%s)\n", filename);
 #else
-	// sprintf(s, "omxplayer --aspect-mode fill --fps 25 --layer 10010 -o alsa --no-keys --no-osd /home/pi/bmos/videos/%s > /dev/null &", filename);
-	sprintf(s, "cvlc --custom-aspect-ratio 16:9 /home/pi/bmos/videos/%s vlc://quit > /dev/null &", filename);
+	sprintf(s, "omxplayer --aspect-mode fill --fps 25 --layer 10010 -o alsa --no-keys --no-osd /home/pi/bmos/videos/%s > /dev/null &", filename);
+	// sprintf(s, "cvlc --custom-aspect-ratio 16:9 /home/pi/bmos/videos/%s vlc://quit > /dev/null &", filename);
 
 	system(s);
 #endif
@@ -2729,22 +2729,22 @@ void CDesktop::PlayVideo(char* filename, int face)
 		return;
 	}
 
-	// char* argv[] = { (char*)"omxplayer",
-	// 	(char*)"--aspect-mode",
-	// 	(char*)"--fps 25",
-	// 	(char*)"fill",
-	// 	(char*)"--layer",
-	// 	(char*)"10010",
-	// 	(char*)"--no-keys",
-	// 	(char*)"--no-osd", (char*)
-	// 	vide, NULL };
+	char* argv[] = { (char*)"omxplayer",
+		(char*)"--aspect-mode",
+		(char*)"--fps 25",
+		(char*)"fill",
+		(char*)"--layer",
+		(char*)"10010",
+		(char*)"--no-keys",
+		(char*)"--no-osd", (char*)
+		vide, NULL };
 
-	char* argv[] = { 
-		(char*)"cvlc",
-		(char*)"--custom-aspect-ratio 16:9",
-		(char*) vide, 
-		(char*) "vlc://quit",
-		NULL };
+	// char* argv[] = { 
+	// 	(char*)"cvlc",
+	// 	(char*)"--custom-aspect-ratio 16:9",
+	// 	(char*) vide, 
+	// 	(char*) "vlc://quit",
+	// 	NULL };
 
 #ifdef WINDOWS
 	//printf("PlayVideo(%s)\n", filename);
@@ -2774,9 +2774,10 @@ void CDesktop::PlayVideo(char* filename, int face)
 	else if (pid == 0) {
 		int fd = open("/dev/null", O_RDWR, S_IRUSR | S_IWUSR);
 		dup2(fd, 1);   // make stdout go to file
-		// execvp("omxplayer", argv);
+
 		printf("Playing video now");
-		execvp("cvlc", argv);
+		execvp("omxplayer", argv);
+		// execvp("cvlc", argv);
 		close(fd);
 	}
 	else {
@@ -2816,20 +2817,20 @@ void CDesktop::PlayVideoUSB(char* filename, int face)
 	sprintf(vide, "/media/usb/%s", filename);
 	char c2;
 
-	// char* argv[] = { (char*)"omxplayer",
-	// 	(char*)"--layer",
-	// 	(char*)"--fps 25",
-	// 	(char*)"10010",
-	// 	(char*)"--no-keys",
-	// 	(char*)"--no-osd", (char*)
-	// 	vide, NULL };
+	char* argv[] = { (char*)"omxplayer",
+		(char*)"--layer",
+		(char*)"--fps 25",
+		(char*)"10010",
+		(char*)"--no-keys",
+		(char*)"--no-osd", (char*)
+		vide, NULL };
 
-	char* argv[] = { 
-		(char*)"cvlc",
-		(char*)"--custom-aspect-ratio 16:9",
-		(char*) vide, 
-		(char*) "vlc://quit",
-		NULL };
+	// char* argv[] = { 
+	// 	(char*)"cvlc",
+	// 	(char*)"--custom-aspect-ratio 16:9",
+	// 	(char*) vide, 
+	// 	(char*) "vlc://quit",
+	// 	NULL };
 
 #ifdef WINDOWS
 	//printf("PlayVideo(%s)\n", filename);
