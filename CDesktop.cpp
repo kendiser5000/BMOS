@@ -2730,14 +2730,14 @@ void CDesktop::PlayVideo(char* filename, int face)
 	}
 
 	char* argv[] = { (char*)"omxplayer",
-		(char*)"--aspect-mode",
 		(char*)"--fps 25",
 		(char*)"fill",
 		(char*)"--layer",
 		(char*)"10010",
 		(char*)"--no-keys",
-		(char*)"--no-osd", (char*)
-		vide, NULL };
+		(char*)"--no-osd", 
+		(char*)vide, 
+		NULL };
 
 	// char* argv[] = { 
 	// 	(char*)"cvlc",
@@ -2758,16 +2758,18 @@ void CDesktop::PlayVideo(char* filename, int face)
 #else
 	char cmd[1024];
 	
-	sprintf(cmd, "cvlc --custom-aspect-ratio 16:9 /home/pi/bmos/videos/%s vlc://quit", filename);
+	// sprintf(cmd, "cvlc --custom-aspect-ratio 16:9 /home/pi/bmos/videos/%s vlc://quit", filename);
+	sprintf(cmd, "omxplayer --fps 25 fill --layer 10010 --no-keys --no-osd /home/pi/bmos/videos/%s\n", vide);
 	printf("Sikender the cmd is: %s\n", cmd);
 	printf("%s\n", vide);
 
 	pid_t pid = fork();
+	printf("Done forking");
 
 	if (pid == -1) {
 		// When fork() returns -1, an error happened.
-		perror("fork failed");
 		printf("fork failed");
+		perror("fork failed");
 		//exit(EXIT_FAILURE);
 		return;
 	}
@@ -2775,7 +2777,7 @@ void CDesktop::PlayVideo(char* filename, int face)
 		int fd = open("/dev/null", O_RDWR, S_IRUSR | S_IWUSR);
 		dup2(fd, 1);   // make stdout go to file
 
-		printf("Playing video now");
+		printf("Playing video now\n");
 		execvp("omxplayer", argv);
 		// execvp("cvlc", argv);
 		close(fd);
@@ -3162,7 +3164,7 @@ void CDesktop::ProcessGoogleVoice()
 	}
 	else if (vc.mCommand == "mp4")
 	{
-		printf("Playing video");
+		printf("Playing video\n");
 		PlayVideo((char*)vc.mArgument.c_str(), 0);
 	}
 	else if (vc.mCommand == "launch")
