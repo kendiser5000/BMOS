@@ -2680,7 +2680,7 @@ void CDesktop::PlayVideoSync(char* filename)
 #ifdef WINDOWS
 	//printf("PlayVideo(%s)\n", filename);
 #else
-	sprintf(s, "omxplayer --aspect-mode fill --layer 10010 -o alsa --no-keys --no-osd /home/pi/bmos/videos/%s > /dev/null &", filename);
+	sprintf(s, "omxplayer --aspect-mode fill --fps 24 --layer 10010 -o alsa --no-keys --no-osd /home/pi/bmos/videos/%s > /dev/null &", filename);
 	system(s);
 #endif
 
@@ -2729,6 +2729,7 @@ void CDesktop::PlayVideo(char* filename, int face)
 
 	char* argv[] = { (char*)"omxplayer",
 		(char*)"--aspect-mode",
+		(char*)"--fps 25",
 		(char*)"fill",
 		(char*)"--layer",
 		(char*)"10010",
@@ -2806,6 +2807,7 @@ void CDesktop::PlayVideoUSB(char* filename, int face)
 
 	char* argv[] = { (char*)"omxplayer",
 		(char*)"--layer",
+		(char*)"--fps 25",
 		(char*)"10010",
 		(char*)"-o",
 		(char*)"alsa",
@@ -2943,7 +2945,7 @@ void CDesktop::StartRecord()
 			(char*)"-d",
 			(char*)"5",
 			(char*)"-D",
-			(char*)"pcm.micboost",
+			(char*)"plughw:2,0",
 			(char*)"-c2",
 			(char*)"-r",
 			(char*)"48000",
