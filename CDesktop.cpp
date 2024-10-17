@@ -2680,7 +2680,7 @@ void CDesktop::PlayVideoSync(char* filename)
 #ifdef WINDOWS
 	//printf("PlayVideo(%s)\n", filename);
 #else
-	sprintf(s, "omxplayer --aspect-mode fill --fps 25 --layer 10010 -o alsa --no-keys --no-osd /home/pi/bmos/videos/%s > /dev/null &", filename);
+	sprintf(s, "omxplayer --aspect-mode fill --fps 25 --layer 10010 --no-keys --no-osd /home/pi/bmos/videos/%s > /dev/null &", filename);
 	// sprintf(s, "cvlc --custom-aspect-ratio 16:9 /home/pi/bmos/videos/%s vlc://quit > /dev/null &", filename);
 
 	system(s);
