@@ -1,7 +1,7 @@
-if ! pidof -x aplay > /dev/null
-then
-   /usr/bin/aplay -D default -t raw -r 48000 -c 2 -f S16_LE  /dev/zero &
-fi
+# if ! pidof -x aplay > /dev/null
+# then
+#    /usr/bin/aplay -D default -t raw -r 48000 -c 2 -f S16_LE  /dev/zero &
+# fi
 
 # touch /home/pi/bmos/parade/parade.txt
 
