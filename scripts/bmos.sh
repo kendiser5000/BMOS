@@ -5,7 +5,7 @@ fi
 
 # touch /home/pi/bmos/parade/parade.txt
 
-omxplayer --aspect-mode fill --fps 25 --layer 10010 --no-keys --no-osd /home/pi/bmos/videos/intro.mp4 > /dev/null &
+omxplayer --aspect-mode fill --fps 25 --layer 10010 --no-keys --no-osd /home/pi/bmos/videos/splashscreen_startup.mp4 > /dev/null &
 # cvlc --aspect-ratio 16:9 /home/pi/bmos/videos/intro.mp4 vlc://quit > /dev/null &
 
 cd /home/pi/bmos/
