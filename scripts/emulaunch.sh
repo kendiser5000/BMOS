@@ -1,4 +1,3 @@
-/home/pi/bmos/scripts/armsup.sh
 /usr/bin/emulationstation
-cvlc --aspect-ratio 16:9 /home/pi/bmos/videos/game_over.mp4 vlc://quit > /dev/null &
+omxplayer --aspect-mode fill --fps 25 --layer 10010 --no-keys --no-osd /home/pi/bmos/videos/intro.mp4 > /dev/null &
 /home/pi/bmos/bmos &
