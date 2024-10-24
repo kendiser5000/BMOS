@@ -1379,6 +1379,7 @@ int CheckPid()
 void CDesktop::GetJoystickAxis(bool* left, bool* right, bool* up, bool* down)
 {
 	Sint16 x_move, y_move, x_move1, y_move1, x_move2, y_move2;
+	// bool up, down, left, right;
 	*left = false;
 	*right = false;
 	*up = false;
@@ -1399,6 +1400,12 @@ void CDesktop::GetJoystickAxis(bool* left, bool* right, bool* up, bool* down)
 	x_move2 = SDL_JoystickGetAxis(CApplication::sGameController2, mJoystick.mJoyAxisX);
 	y_move2 = SDL_JoystickGetAxis(CApplication::sGameController2, mJoystick.mJoyAxisY);
 
+
+	// see if big buttons are used
+	*up = SDL_JoystickGetButton(CApplication::sGameController2, 8);
+	*down = SDL_JoystickGetButton(CApplication::sGameController2, 9);
+	*left = SDL_JoystickGetButton(CApplication::sGameController2, 4);
+	*right = SDL_JoystickGetButton(CApplication::sGameController2, 5);
 
 	//Left of dead zone
 	if (x_move < -8000)
@@ -1459,7 +1466,6 @@ void CDesktop::GetJoystickAxis(bool* left, bool* right, bool* up, bool* down)
 		*right = true;
 	}
 
-
 	//Y axis motion
 		//Below of dead zone
 	if (y_move2 < -8000)
@@ -1471,6 +1477,8 @@ void CDesktop::GetJoystickAxis(bool* left, bool* right, bool* up, bool* down)
 	{
 		*down = true;
 	}
+
+
 }
 
 void CDesktop::Update()

@@ -498,9 +498,6 @@ void handleDesktop(SDL_Event e)
 		gDesktop->OnTextEditEvent(e.edit);
 		break;
 	}
-	
-
-	
 
 	if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP)
 	{
