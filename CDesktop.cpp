@@ -1402,8 +1402,8 @@ void CDesktop::GetJoystickAxis(bool* left, bool* right, bool* up, bool* down)
 
 
 	// see if big buttons are used
-	*up = SDL_JoystickGetButton(CApplication::sGameController2, 8);
-	*down = SDL_JoystickGetButton(CApplication::sGameController2, 9);
+	*up = SDL_JoystickGetButton(CApplication::sGameController2, 9);
+	*down = SDL_JoystickGetButton(CApplication::sGameController2, 8);
 	*left = SDL_JoystickGetButton(CApplication::sGameController2, 4);
 	*right = SDL_JoystickGetButton(CApplication::sGameController2, 5);
 
