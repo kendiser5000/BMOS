@@ -1378,7 +1378,7 @@ int CheckPid()
 
 void CDesktop::GetJoystickAxis(bool* left, bool* right, bool* up, bool* down)
 {
-	Sint16 x_move, y_move;
+	Sint16 x_move, y_move, x_move1, y_move1, x_move2, y_move2;
 	*left = false;
 	*right = false;
 	*up = false;
@@ -1393,6 +1393,11 @@ void CDesktop::GetJoystickAxis(bool* left, bool* right, bool* up, bool* down)
 	x_move = SDL_JoystickGetAxis(CApplication::sGameController, mJoystick.mJoyAxisX);
 	y_move = SDL_JoystickGetAxis(CApplication::sGameController, mJoystick.mJoyAxisY);
 
+	x_move1 = SDL_JoystickGetAxis(CApplication::sGameController1, mJoystick.mJoyAxisX);
+	y_move1 = SDL_JoystickGetAxis(CApplication::sGameController1, mJoystick.mJoyAxisY);
+
+	x_move2 = SDL_JoystickGetAxis(CApplication::sGameController2, mJoystick.mJoyAxisX);
+	y_move2 = SDL_JoystickGetAxis(CApplication::sGameController2, mJoystick.mJoyAxisY);
 
 
 	//Left of dead zone
@@ -1408,7 +1413,6 @@ void CDesktop::GetJoystickAxis(bool* left, bool* right, bool* up, bool* down)
 
 
 	//Y axis motion
-
 		//Below of dead zone
 	if (y_move < -8000)
 	{
@@ -1420,7 +1424,53 @@ void CDesktop::GetJoystickAxis(bool* left, bool* right, bool* up, bool* down)
 		*down = true;
 	}
 
+		//Left of dead zone
+	if (x_move1 < -8000)
+	{
+		*left = true;
+	}
+	//Right of dead zone
+	else if (x_move1 > 8000)
+	{
+		*right = true;
+	}
 
+
+	//Y axis motion
+		//Below of dead zone
+	if (y_move1 < -8000)
+	{
+		*up = true;
+	}
+	//Above of dead zone
+	else if (y_move1 > 8000)
+	{
+		*down = true;
+	}
+
+		//Left of dead zone
+	if (x_move2 < -8000)
+	{
+		*left = true;
+	}
+	//Right of dead zone
+	else if (x_move2 > 8000)
+	{
+		*right = true;
+	}
+
+
+	//Y axis motion
+		//Below of dead zone
+	if (y_move2 < -8000)
+	{
+		*up = true;
+	}
+	//Above of dead zone
+	else if (y_move2 > 8000)
+	{
+		*down = true;
+	}
 }
 
 void CDesktop::Update()

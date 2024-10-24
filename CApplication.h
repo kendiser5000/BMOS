@@ -9,5 +9,7 @@ public:
 	static SDL_Window* sWindow;
 	static std::string sBMOS_Root;
 	static SDL_Joystick* sGameController;
+	static SDL_Joystick* sGameController1;
+	static SDL_Joystick* sGameController2;
 };
 

@@ -67,6 +67,8 @@ int dispW, dispH;
 //CTexture *gCursor;
 CDesktop *gDesktop;
 SDL_Joystick *gGameController;
+SDL_Joystick *gGameController1;
+SDL_Joystick *gGameController2;
 SDL_DisplayMode current;
 
 enum GameMode
@@ -172,12 +174,16 @@ bool init()
 		//Load joystick
 
 		gGameController = SDL_JoystickOpen(0);
+		gGameController = SDL_JoystickOpen(1);
+		gGameController = SDL_JoystickOpen(2);
 		if (gGameController == NULL)
 		{
 			//printf("Unable to open game controller. SDL Error: %s\n", SDL_GetError());
 		}
 
 		CApplication::sGameController = gGameController;
+		CApplication::sGameController1 = gGameController1;
+		CApplication::sGameController2 = gGameController2;
 
 		//Set texture filtering to linear
 		if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
@@ -714,6 +720,8 @@ void handleDesktop(SDL_Event e)
 				SDL_JoystickClose(CApplication::sGameController);
 			}
 			CApplication::sGameController = SDL_JoystickOpen(0);
+			CApplication::sGameController1 = SDL_JoystickOpen(1);
+			CApplication::sGameController2 = SDL_JoystickOpen(2);
 		}
 	}
 	
