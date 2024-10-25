@@ -3020,21 +3020,35 @@ void CDesktop::StartRecord()
 	else if (mRecordPid == 0)
 	{
 		//printf("Start arecord\n");
-		char* argv[] = {(char*)"arecord", 
-			(char*)"-d",
-			(char*)"5",
-			(char*)"-D",
+		// char* argv[] = {(char*)"arecord", 
+		// 	(char*)"-d",
+		// 	(char*)"5",
+		// 	(char*)"-D",
+		// 	(char*)"plughw:2,0",
+		// 	(char*)"-c2",
+		// 	(char*)"-r",
+		// 	(char*)"48000",
+		// 	(char*)"-f",
+		// 	(char*)"S32_LE",
+		// 	(char*)"-t",
+		// 	(char*)"wav",
+		// 	(char*)"-V",
+		// 	(char*)"mono",
+		// 	(char*)"-v",
+		// 	(char *)"out.wav",
+		// 	NULL };
+
+		char* argv[] = {(char*)"ffmpeg", 
+			(char*)"-y",
+			(char*)"-f alsa",
+			(char*)"-i",
 			(char*)"plughw:2,0",
-			(char*)"-c2",
-			(char*)"-r",
-			(char*)"48000",
-			(char*)"-f",
-			(char*)"S32_LE",
-			(char*)"-t",
-			(char*)"wav",
-			(char*)"-V",
-			(char*)"mono",
-			(char*)"-v",
+			(char*)"-ar",
+			(char*)"16000",
+			(char*)"-ac",
+			(char*)"1",
+			(char*)"-c:a",
+			(char*)"pcm_s16le",
 			(char *)"out.wav",
 			NULL };
 
@@ -3046,8 +3060,8 @@ void CDesktop::StartRecord()
 	//(char*)"--file-type=raw",
 	//(char*)"out.raw", NULL };
 
-		execvp("arecord", argv);
-		perror("execvp of arecord  failed");
+		execvp("ffmpeg", argv);
+		perror("execvp of ffmpeg  failed");
 		exit(1);
 	}
 
