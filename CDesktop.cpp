@@ -3040,7 +3040,8 @@ void CDesktop::StartRecord()
 
 		char* argv[] = {(char*)"ffmpeg", 
 			(char*)"-y",
-			(char*)"-f alsa",
+			(char*)"-f",
+			(char*)"alsa",
 			(char*)"-i",
 			(char*)"plughw:2,0",
 			(char*)"-ar",
