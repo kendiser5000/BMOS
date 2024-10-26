@@ -2795,6 +2795,8 @@ void CDesktop::PlayVideo(char* filename, int face)
 		(char*)"--layer",
 		(char*)"10010",
 		(char*)"--no-keys",
+		(char*)"--vol",
+		(char*)"400",
 		(char*)"--no-osd", 
 		(char*)vide, 
 		NULL };
@@ -2819,7 +2821,7 @@ void CDesktop::PlayVideo(char* filename, int face)
 	char cmd[1024];
 	
 	// sprintf(cmd, "cvlc --custom-aspect-ratio 16:9 /home/pi/bmos/videos/%s vlc://quit", filename);
-	sprintf(cmd, "omxplayer --aspect-mode fill --fps 25 --layer 10010 --no-keys --no-osd %s\n", vide);
+	sprintf(cmd, "omxplayer --aspect-mode fill --fps 25 --layer 10010 --no-keys --no-osd --vol 400 %s\n", vide);
 	printf("Sikender the cmd is: %s\n", cmd);
 	printf("%s\n", vide);
 
@@ -3198,7 +3200,7 @@ void CDesktop::ProcessGoogleVoice()
 	else if (vc.mCommand == "")
 	{
 		printf("vc.mCommand not found\n");
-		PlayVideo((char*)"hmm.mp4", 0);
+		PlayVideo((char*)"beep2.mp4", 0);
 	}
 	else if (vc.mCommand == "shutdown")
 	{
