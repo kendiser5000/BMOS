@@ -3024,7 +3024,7 @@ void CDesktop::StartRecord()
 		//printf("Start arecord\n");
 		char* argv[] = {(char*)"arecord", 
 			(char*)"-d",
-			(char*)"5",
+			(char*)"10",
 			(char*)"-D",
 			(char*)"plughw:2,0",
 			(char*)"-c2",
